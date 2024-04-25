@@ -20,8 +20,6 @@ class HelperDB(context: Context?) :
         db.execSQL(Usuario.CREATE_TABLE_USUARIO)
         db.execSQL(Producto.CREATE_TABLE_PRODUCTOS)
         db.execSQL(Compra.CREATE_TABLE_COMPRA)
-        db.execSQL(Carrito.CREATE_TABLE_CARRITO)
-        db.execSQL(CarritoProducto.CREATE_TABLE_CARRITO_PRODUCTO)
         db.execSQL(CompraProducto.CREATE_TABLE_COMPRA_PRODUCTO)
     }
 
