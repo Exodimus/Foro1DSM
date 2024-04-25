@@ -3,11 +3,9 @@ package com.example.tiendavirtualsqlite.db
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import com.example.tiendavirtualsqlite.model.Carrito
 import com.example.tiendavirtualsqlite.model.Compra
 import com.example.tiendavirtualsqlite.model.Producto
 import com.example.tiendavirtualsqlite.model.Usuario
-import com.example.tiendavirtualsqlite.model.CarritoProducto
 import com.example.tiendavirtualsqlite.model.CompraProducto
 
 class HelperDB(context: Context?) :
