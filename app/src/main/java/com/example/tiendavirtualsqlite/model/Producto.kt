@@ -76,7 +76,7 @@ class Producto(context: Context?) {
 
     fun verDetalle(idProducto: Long): Triple<String?, Double?, Int?> {
         val query = "SELECT $COL_DESCRIPCION, $COL_PRECIO, $COL_CANTIDAD FROM $TABLE_NAME_PRODUCTOS WHERE $COL_ID = ?"
-        val cursor = db?.rawQuery(query, arrayOf(idProducto.toString()))
+        val cursor = db!!.rawQuery(query, arrayOf(idProducto.toString()))
         var detalle: Triple<String?, Double?, Int?> = Triple(null, null, null)
         cursor?.use {
             if (it.moveToFirst()) {

@@ -26,12 +26,35 @@ class Compra(context: Context) {
                 "CREATE TABLE IF NOT EXISTS $TABLE_NAME_COMPRA ("
                         + "$COL_ID_COMPRA INTEGER PRIMARY KEY AUTOINCREMENT,"
                         + "$COL_ID_USUARIO INTEGER,"
-                        + "$COL_FECHA TEXT,"
-                        + "$COL_ESTADO INTEGER,"
+                        + "$COL_FECHA Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,"
+                        + "$COL_ESTADO INTEGER DEFAULT 0,"
                         + "FOREIGN KEY($COL_ID_USUARIO) REFERENCES ${Usuario.TABLE_NAME_USUARIO}(${Usuario.COL_ID_USUARIO})"
                         + ")"
                 )
     }
-
     //Métodos
+    fun crearCompra(idUsuario: Long, estadoInicial: Long): Long {
+        val values = ContentValues().apply {
+            put(COL_ID_USUARIO, idUsuario)
+        //Fecha y estado tienen valores predeterminados desde la db
+        }
+        return db!!.insert(TABLE_NAME_COMPRA, null, values)
+    }
+    fun finalizarCompra(idUsuario: Long, idCompra: Long, estadoInicial: Long): Int {
+        val values = ContentValues().apply {
+            put(COL_ESTADO, 1)
+        }
+        return db!!.update(
+            TABLE_NAME_COMPRA,
+            values,
+            "$COL_ID_USUARIO = ? AND $COL_ID_COMPRA = ?",
+            arrayOf(idUsuario.toString(), idCompra.toString())
+        )
+    }
+    fun eliminarCompra(idUsuario: Long): Int {
+        return db!!.delete(TABLE_NAME_COMPRA, "$COL_ID_USUARIO = ?", arrayOf(idUsuario.toString()))
+    }
+
+
+
 }

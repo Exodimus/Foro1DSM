@@ -32,6 +32,27 @@ class Usuario(context: Context) {
                         + ")"
                 )
     }
-
     //Métodos
+    fun signup(nombreUsuario: String, password: String): Long {
+        val values = ContentValues().apply {
+            put(COL_NOMBRE_USUARIO, nombreUsuario)
+            put(COL_PASSWORD, password)
+        }
+        return db!!.insert(TABLE_NAME_USUARIO, null, values)
+    }
+
+    fun login(nombreUsuario: String, password: String): Boolean {
+        val cursor = db!!.query(
+            TABLE_NAME_USUARIO,
+            null,
+            "$COL_NOMBRE_USUARIO = ? AND $COL_PASSWORD = ?",
+            arrayOf(nombreUsuario, password),
+            null,
+            null,
+            null
+        )
+        val count = cursor.count
+        cursor.close()
+        return count > 0
+    }
 }

@@ -34,5 +34,35 @@ class CompraProducto(context: Context) {
                 )
     }
 
-    //Métodos
+    fun agregarProducto(idCompra: Long, idProducto: Long, cantidad: Int): Long {
+        val values = ContentValues().apply {
+            put(COL_ID_COMPRA, idCompra)
+            put(COL_ID_PRODUCTO, idProducto)
+            put(COL_CANTIDAD, cantidad)
+        }
+        return db!!.insert(TABLE_NAME_COMPRA_PRODUCTO, null, values)
+    }
+
+    fun cambiarCantidad(idCompraProducto: Long, nuevaCantidad: Int): Int {
+        val values = ContentValues().apply {
+            put(COL_CANTIDAD, nuevaCantidad)
+        }
+        return db!!.update(TABLE_NAME_COMPRA_PRODUCTO, values, "$COL_ID_COMPRA_PRODUCTO = ?", arrayOf(idCompraProducto.toString()))
+    }
+
+    fun eliminarProducto(idCompraProducto: Long): Int {
+        return db!!.delete(TABLE_NAME_COMPRA_PRODUCTO, "$COL_ID_COMPRA_PRODUCTO = ?", arrayOf(idCompraProducto.toString()))
+    }
+    fun verCompra(idCompra: Long): Cursor? {
+        return db!!.query(
+            TABLE_NAME_COMPRA_PRODUCTO,
+            null,
+            "$COL_ID_COMPRA = ?",
+            arrayOf(idCompra.toString()),
+            null,
+            null,
+            null
+        )
+    }
+}
 }
