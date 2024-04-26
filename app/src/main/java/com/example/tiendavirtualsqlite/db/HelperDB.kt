@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper
 import com.example.tiendavirtualsqlite.model.Compra
 import com.example.tiendavirtualsqlite.model.Producto
 import com.example.tiendavirtualsqlite.model.Usuario
-import com.example.tiendavirtualsqlite.model.CompraProducto
+import com.example.tiendavirtualsqlite.model.DetalleCompra
 
 class HelperDB(context: Context?) :
     SQLiteOpenHelper(context, DB_NAME, null, DB_VERSION) {
@@ -17,10 +17,10 @@ class HelperDB(context: Context?) :
     }
 
     override fun onCreate(db: SQLiteDatabase) {
-        db.execSQL(Usuario.CREATE_TABLE_USUARIO)
+        db.execSQL(Usuario.CREATE_TABLE_USUARIOS)
         db.execSQL(Producto.CREATE_TABLE_PRODUCTOS)
-        db.execSQL(Compra.CREATE_TABLE_COMPRA)
-        db.execSQL(CompraProducto.CREATE_TABLE_COMPRA_PRODUCTO)
+        db.execSQL(Compra.CREATE_TABLE_COMPRAS)
+        db.execSQL(DetalleCompra.CREATE_TABLE_DETALLE_COMPRA)
     }
 
 

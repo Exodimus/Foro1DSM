@@ -1,7 +1,6 @@
 package com.example.tiendavirtualsqlite.model
 import android.content.ContentValues
 import android.content.Context
-import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import com.example.tiendavirtualsqlite.db.HelperDB
 
@@ -16,7 +15,7 @@ class Usuario(context: Context) {
 
     companion object {
         // Nombre de la tabla
-        const val TABLE_NAME_USUARIO = "usuario"
+        const val TABLE_NAME_USUARIOS = "usuario"
 
         // Nombre de los campos de la tabla usuario
         const val COL_ID_USUARIO = "idusuario"
@@ -24,8 +23,8 @@ class Usuario(context: Context) {
         private const val COL_PASSWORD = "password"
 
         // Sentencia SQL para crear la tabla usuario
-        const val CREATE_TABLE_USUARIO = (
-                "CREATE TABLE IF NOT EXISTS $TABLE_NAME_USUARIO ("
+        const val CREATE_TABLE_USUARIOS = (
+                "CREATE TABLE IF NOT EXISTS $TABLE_NAME_USUARIOS ("
                         + "$COL_ID_USUARIO INTEGER PRIMARY KEY AUTOINCREMENT,"
                         + "$COL_NOMBRE_USUARIO TEXT NOT NULL,"
                         + "$COL_PASSWORD TEXT NOT NULL"
@@ -38,12 +37,12 @@ class Usuario(context: Context) {
             put(COL_NOMBRE_USUARIO, nombreUsuario)
             put(COL_PASSWORD, password)
         }
-        return db!!.insert(TABLE_NAME_USUARIO, null, values)
+        return db!!.insert(TABLE_NAME_USUARIOS, null, values)
     }
 
     fun login(nombreUsuario: String, password: String): Boolean {
         val cursor = db!!.query(
-            TABLE_NAME_USUARIO,
+            TABLE_NAME_USUARIOS,
             null,
             "$COL_NOMBRE_USUARIO = ? AND $COL_PASSWORD = ?",
             arrayOf(nombreUsuario, password),
