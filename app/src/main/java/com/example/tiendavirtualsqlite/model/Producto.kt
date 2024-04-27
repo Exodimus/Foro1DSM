@@ -33,7 +33,7 @@ class Producto(context: Context?) {
                         + COL_ID + " integer primary key autoincrement,"
                         + COL_DESCRIPCION + " varchar(150) NOT NULL,"
                         + COL_PRECIO + " decimal(10,2) NOT NULL,"
-                        + COL_CANTIDAD + " integer,"
+                        + COL_CANTIDAD + " integer)"
                 )
     }
 

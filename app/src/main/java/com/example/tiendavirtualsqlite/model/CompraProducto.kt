@@ -28,7 +28,7 @@ class CompraProducto(context: Context) {
                         + "$COL_ID_COMPRA INTEGER,"
                         + "$COL_ID_PRODUCTO INTEGER,"
                         + "$COL_CANTIDAD INTEGER,"
-                        + "FOREIGN KEY($COL_ID_COMPRA) REFERENCES ${Compra.TABLE_NAME_COMPRA}(${Compra.COL_ID_COMPRA}),"
+                        + "FOREIGN KEY($COL_ID_COMPRA) REFERENCES ${Compra.TABLE_NAME_COMPRAS}(${Compra.COL_ID_COMPRA}),"
                         + "FOREIGN KEY($COL_ID_PRODUCTO) REFERENCES ${Producto.TABLE_NAME_PRODUCTOS}(${Producto.COL_ID})"
                         + ")"
                 )
@@ -64,5 +64,4 @@ class CompraProducto(context: Context) {
             null
         )
     }
-}
 }

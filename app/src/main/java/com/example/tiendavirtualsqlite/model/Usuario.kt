@@ -53,7 +53,7 @@ class Usuario(context: Context) {
             null
         )
 
-        var userId: Long = -1 // Valor predeterminado si el inicio de sesión falla
+        var userId: Long = -1L // Valor predeterminado si el inicio de sesión falla
         if (cursor.moveToFirst()) {
             val columnIndex = cursor.getColumnIndex(COL_ID_USUARIO)
             if (columnIndex >= 0) {

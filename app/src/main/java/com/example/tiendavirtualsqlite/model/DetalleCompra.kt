@@ -15,7 +15,7 @@ class DetalleCompra(context: Context) {
     }
 
     companion object {
-        private const val TABLE_NAME_DETALLE_COMPRA = "detalle-compra"
+        private const val TABLE_NAME_DETALLE_COMPRA = "detallecompra"
 
         private const val COL_ID_DETALLE_COMPRA = "iddetallecompra"
         private const val COL_ID_COMPRA = "idcompra"
