@@ -56,12 +56,27 @@ class Producto(context: Context?) {
     }
 
     // Mostrar todos los registros
-    fun searchProductosAll(): Cursor? {
+    fun searchProductosAll(): List<Product> {
+        val products = mutableListOf<Product>()
         val columns = arrayOf(COL_DESCRIPCION, COL_PRECIO, COL_CANTIDAD, COL_IMG, COL_NOMBRE)
-        return db!!.query(
+        val cursor = db!!.query(
             TABLE_NAME_PRODUCTOS, columns,
             null, null, null, null, "$COL_NOMBRE ASC"
         )
+        while (cursor.moveToNext()) {
+            val descripcion = cursor.getString(cursor.getColumnIndexOrThrow(COL_DESCRIPCION))
+            val precio = cursor.getFloat(cursor.getColumnIndexOrThrow(COL_PRECIO))
+            val cantidad = cursor.getInt(cursor.getColumnIndexOrThrow(COL_CANTIDAD))
+            val imagen = cursor.getString(cursor.getColumnIndexOrThrow(COL_IMG))
+            val nombre = cursor.getString(cursor.getColumnIndexOrThrow(COL_NOMBRE))
+
+            val product = Product(descripcion, precio, cantidad, imagen, nombre, idproducto = "")
+
+            products.add(product)
+        }
+
+        cursor.close()
+        return products
     }
 
     fun verCantidad(idProducto: Long): Int {

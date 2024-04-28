@@ -4,7 +4,7 @@ import java.io.File
 
 data class Product(
     val descripcion: String,
-    val precio: String,
+    val precio: Float,
     val cantidad: Int,
     val nombre: String,
     val imagen: String,
