@@ -2,4 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="tiffany_blue">#F09DD9D2</color>
+    <color name="verdigris_1">#FF79BCB8</color>
+    <color name="verdigris_2">#FF5EC2B7</color>
+    <color name="light_sea_green">#FF2CA6A4</color>
+    <color name="verdigris_3">#FF3AA7A3</color>
 </resources>

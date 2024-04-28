@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
+import com.example.tiendavirtualsqlite.Product
 import com.example.tiendavirtualsqlite.db.HelperDB
 
 class Producto(context: Context?) {
@@ -25,21 +26,29 @@ class Producto(context: Context?) {
         const val COL_DESCRIPCION = "descripcion"
         const val COL_PRECIO = "precio"
         const val COL_CANTIDAD = "cantidad"
+        const val COL_IMG = "imagen"
+        const val COL_NOMBRE = "nombre"
 
 
         //sentencia SQL para crear la tabla.
         const val CREATE_TABLE_PRODUCTOS = (
-                "CREATE TABLE IF NOT EXISTS " + TABLE_NAME_PRODUCTOS + "("
+                "CREATE TABLE IF NOT EXISTS " + TABLE_NAME_PRODUCTOS + " ("
                         + COL_ID + " integer primary key autoincrement,"
                         + COL_DESCRIPCION + " varchar(150) NOT NULL,"
                         + COL_PRECIO + " decimal(10,2) NOT NULL,"
-                        + COL_CANTIDAD + " integer)"
+                        + COL_CANTIDAD + " integer,"
+                        + COL_IMG + " varchar(100),"
+                        + COL_NOMBRE + " varchar(50))"
                 )
+    }
+
+    fun insertarProductos(productos: List<Product>) {
+
     }
 
     // Mostrar un registro particular
     fun searchProducto(id: Int): Cursor? {
-        val columns = arrayOf(COL_ID, COL_DESCRIPCION, COL_PRECIO, COL_CANTIDAD)
+        val columns = arrayOf(COL_ID, COL_DESCRIPCION, COL_PRECIO, COL_CANTIDAD, COL_IMG, COL_NOMBRE)
         return db!!.query(
             TABLE_NAME_PRODUCTOS, columns,
             "$COL_ID=?", arrayOf(id.toString()), null, null, null
@@ -48,10 +57,10 @@ class Producto(context: Context?) {
 
     // Mostrar todos los registros
     fun searchProductosAll(): Cursor? {
-        val columns = arrayOf(COL_DESCRIPCION, COL_PRECIO, COL_CANTIDAD)
+        val columns = arrayOf(COL_DESCRIPCION, COL_PRECIO, COL_CANTIDAD, COL_IMG, COL_NOMBRE)
         return db!!.query(
             TABLE_NAME_PRODUCTOS, columns,
-            null, null, null, null, "$COL_DESCRIPCION ASC"
+            null, null, null, null, "$COL_NOMBRE ASC"
         )
     }
 
@@ -74,16 +83,17 @@ class Producto(context: Context?) {
         return db?.update(TABLE_NAME_PRODUCTOS, values, "$COL_ID = ?", arrayOf(idProducto.toString())) ?: 0
     }
 
-    fun verDetalle(idProducto: Long): Triple<String?, Double?, Int?> {
-        val query = "SELECT $COL_DESCRIPCION, $COL_PRECIO, $COL_CANTIDAD FROM $TABLE_NAME_PRODUCTOS WHERE $COL_ID = ?"
+    fun verDetalle(idProducto: Long): MutableMap<String, Any?> {
+        val query = "SELECT $COL_DESCRIPCION, $COL_PRECIO, $COL_CANTIDAD, $COL_IMG, $COL_NOMBRE FROM $TABLE_NAME_PRODUCTOS WHERE $COL_ID = ?"
         val cursor = db!!.rawQuery(query, arrayOf(idProducto.toString()))
-        var detalle: Triple<String?, Double?, Int?> = Triple(null, null, null)
+        val detalle: MutableMap<String, Any?> = mutableMapOf()
         cursor?.use {
             if (it.moveToFirst()) {
-                val nombre = it.getString(it.getColumnIndexOrThrow(COL_DESCRIPCION))
-                val precio = it.getDouble(it.getColumnIndexOrThrow(COL_PRECIO))
-                val cantidad = it.getInt(it.getColumnIndexOrThrow(COL_CANTIDAD))
-                detalle = Triple(nombre, precio, cantidad)
+                detalle["descripcion"] = it.getString(it.getColumnIndexOrThrow(COL_DESCRIPCION))
+                detalle["precio"] = it.getDouble(it.getColumnIndexOrThrow(COL_PRECIO))
+                detalle["cantidad"] = it.getInt(it.getColumnIndexOrThrow(COL_CANTIDAD))
+                detalle["imagen"] = it.getString(it.getColumnIndexOrThrow(COL_IMG))
+                detalle["nombre"] = it.getString(it.getColumnIndexOrThrow(COL_NOMBRE))
             }
         }
         return detalle
