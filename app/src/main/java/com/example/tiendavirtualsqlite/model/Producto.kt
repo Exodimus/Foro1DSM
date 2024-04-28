@@ -65,15 +65,17 @@ class Producto(context: Context?) {
         )
         while (cursor.moveToNext()) {
             val descripcion = cursor.getString(cursor.getColumnIndexOrThrow(COL_DESCRIPCION))
-            val precio = cursor.getFloat(cursor.getColumnIndexOrThrow(COL_PRECIO))
+            val precio = cursor.getDouble(cursor.getColumnIndexOrThrow(COL_PRECIO))
             val cantidad = cursor.getInt(cursor.getColumnIndexOrThrow(COL_CANTIDAD))
             val imagen = cursor.getString(cursor.getColumnIndexOrThrow(COL_IMG))
             val nombre = cursor.getString(cursor.getColumnIndexOrThrow(COL_NOMBRE))
 
-            val product = Product(descripcion, precio, cantidad, imagen, nombre, idproducto = "")
-
-            products.add(product)
+            val product = Product(descripcion, precio, cantidad, nombre, imagen, idproducto = "")
+            if(cantidad > 0) {
+                products.add(product)
+            }
         }
+        print(products)
 
         cursor.close()
         return products

@@ -47,7 +47,7 @@ class HelperDB(context: Context?) :
             val jsonObject = jsonArray.getJSONObject(i)
             val producto = Product(
                 descripcion = jsonObject.getString("descripcion"),
-                precio = jsonObject.getString("precio"),
+                precio = jsonObject.getDouble("precio"),
                 cantidad = jsonObject.getInt("cantidad"),
                 nombre = jsonObject.getString("nombre"),
                 imagen = jsonObject.getString("imagen"),

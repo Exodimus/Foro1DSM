@@ -1,50 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:layout_margin="15dp">
     <!-- product_item.xml -->
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="10dp"
+        android:background="@color/tiffany_blue"
+        >
 
-        <!-- TextView para mostrar la descripción -->
-        <TextView
-            android:id="@+id/tvDescripcion"
-            android:layout_width="wrap_content"
+        <!-- ImageView para mostrar la imagen -->
+        <ImageView
+            android:id="@+id/ivImagen"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Descripción: "
-            android:textStyle="bold" />
-
-        <!-- TextView para mostrar el precio -->
-        <TextView
-            android:id="@+id/tvPrecio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Precio: " />
-
-        <!-- TextView para mostrar la cantidad -->
-        <TextView
-            android:id="@+id/tvCantidad"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cantidad: " />
+            android:src="@mipmap/ic_launcher" />
 
         <!-- TextView para mostrar el nombre -->
         <TextView
             android:id="@+id/tvNombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nombre: " />
+            android:text="Nombre: "
+            android:textStyle="bold"/>
 
-        <!-- ImageView para mostrar la imagen -->
-        <ImageView
-            android:id="@+id/ivImagen"
+        <!-- TextView para mostrar el precio -->
+        <TextView
+            android:id="@+id/tvPrecio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher" />
+            android:text="Precio: "
+            android:textStyle="bold"/>
+
+        <!-- TextView para mostrar la descripción -->
+        <TextView
+            android:id="@+id/tvDescripcion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Descripción: " />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
