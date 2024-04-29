@@ -5,12 +5,12 @@
     android:layout_margin="15dp">
     <!-- product_item.xml -->
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="10dp"
         android:background="@color/tiffany_blue"
+        android:gravity="center"
         >
 
         <!-- ImageView para mostrar la imagen -->
@@ -23,7 +23,7 @@
         <!-- TextView para mostrar el nombre -->
         <TextView
             android:id="@+id/tvNombre"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Nombre: "
             android:textStyle="bold"/>
@@ -31,7 +31,7 @@
         <!-- TextView para mostrar el precio -->
         <TextView
             android:id="@+id/tvPrecio"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Precio: "
             android:textStyle="bold"/>
@@ -39,9 +39,29 @@
         <!-- TextView para mostrar la descripción -->
         <TextView
             android:id="@+id/tvDescripcion"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Descripción: " />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/editTextNumber"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="number" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="122dp"
+                android:layout_height="wrap_content"
+                android:text="Agregar" />
+        </LinearLayout>
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
