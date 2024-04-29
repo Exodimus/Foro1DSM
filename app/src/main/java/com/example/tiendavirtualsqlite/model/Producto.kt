@@ -4,7 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
-import com.example.tiendavirtualsqlite.Product
+import com.example.tiendavirtualsqlite.classes.Product
 import com.example.tiendavirtualsqlite.db.HelperDB
 
 class Producto(context: Context?) {
@@ -40,10 +40,6 @@ class Producto(context: Context?) {
                         + COL_IMG + " varchar(100),"
                         + COL_NOMBRE + " varchar(50))"
                 )
-    }
-
-    fun insertarProductos(productos: List<Product>) {
-
     }
 
     // Mostrar un registro particular

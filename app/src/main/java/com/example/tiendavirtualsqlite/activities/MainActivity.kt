@@ -1,4 +1,4 @@
-package com.example.tiendavirtualsqlite
+package com.example.tiendavirtualsqlite.activities
 import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle

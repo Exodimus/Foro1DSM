@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProductActivity">
+    tools:context=".activities.ProductActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,7 +26,9 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/productsContainer"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="56dp"
+            android:clipToPadding="false">
 
         </androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>

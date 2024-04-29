@@ -1,14 +1,12 @@
-package com.example.tiendavirtualsqlite
+package com.example.tiendavirtualsqlite.activities
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.example.tiendavirtualsqlite.R
 import com.example.tiendavirtualsqlite.databinding.ActivityMyShoppingsBinding
 import com.example.tiendavirtualsqlite.model.Producto
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MyShoppingsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMyShoppingsBinding

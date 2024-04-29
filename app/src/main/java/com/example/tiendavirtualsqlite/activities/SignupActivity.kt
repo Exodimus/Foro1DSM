@@ -1,42 +1,42 @@
-package com.example.tiendavirtualsqlite
+package com.example.tiendavirtualsqlite.activities
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.tiendavirtualsqlite.databinding.ActivityLoginBinding
+import com.example.tiendavirtualsqlite.databinding.ActivitySignupBinding
 import com.example.tiendavirtualsqlite.model.Usuario
 
-class LoginActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityLoginBinding
+class SignupActivity : AppCompatActivity() {
+    private lateinit var binding: ActivitySignupBinding
     private var userId: Long? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLoginBinding.inflate(layoutInflater)
+        binding = ActivitySignupBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val loginBtn: Button = binding.loginBtn
-        val changeSignup: TextView = binding.changeSignup
+        val signupBtn: Button = binding.signupBtn
+        val changeLogin: TextView = binding.changeLogin
 
-        loginBtn.setOnClickListener{
+        signupBtn.setOnClickListener{
             val userManager = Usuario(this)
             val username = binding.inputUser.text.toString()
             val password = binding.inputPassword.text.toString()
 
-            userId = userManager.login(username, password)
+            userId = userManager.signup(username, password)
 
             if (userId != -1L) {
                 val intent = Intent(this, ProductActivity::class.java)
                 intent.putExtra("userId",userId)
                 startActivity(intent)
             } else {
-                Toast.makeText(this, "Error, no se encontró el usuario", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Error, no se pudo crear el usuario", Toast.LENGTH_LONG).show()
             }
         }
 
-        changeSignup.setOnClickListener {
-            val intent = Intent(this, SignupActivity::class.java)
+        changeLogin.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
     }

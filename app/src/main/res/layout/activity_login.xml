@@ -5,7 +5,7 @@
     android:id="@+id/login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".activities.LoginActivity">
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -19,8 +19,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingVertical="40dp"
-            android:paddingHorizontal="10dp"
-            android:background="@color/tiffany_blue"
+            android:paddingHorizontal="20dp"
+            android:background="@drawable/rounded_background"
             android:gravity="center">
             <TextView
                 android:id="@+id/textView"
@@ -31,24 +31,37 @@
                 android:textAlignment="center"
                 android:textSize="34sp" />
 
-            <EditText
-                android:id="@+id/inputUser"
-                android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputLayout
+                app:startIconDrawable="@drawable/baseline_person_24"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
                 android:hint="usuario"
-                android:inputType="text"
-                android:layout_marginBottom="30dp"/>
+                android:layout_marginBottom="30dp">
 
-            <EditText
-                android:id="@+id/inputPassword"
-                android:layout_width="wrap_content"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputUser"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                app:startIconDrawable="@drawable/baseline_lock_24"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hapticFeedbackEnabled="false"
+                app:endIconMode="password_toggle"
                 android:hint="contraseña"
-                android:inputType="textPassword"
-                android:layout_marginBottom="30dp"/>
+                android:layout_marginBottom="30dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/loginBtn"

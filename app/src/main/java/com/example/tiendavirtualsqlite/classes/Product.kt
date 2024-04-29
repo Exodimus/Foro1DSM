@@ -1,4 +1,4 @@
-package com.example.tiendavirtualsqlite
+package com.example.tiendavirtualsqlite.classes
 import org.json.JSONArray
 import java.io.File
 
