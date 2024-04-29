@@ -5,24 +5,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <!-- ImageView para mostrar la imagen -->
-        <ImageView
-            android:id="@+id/ivImagen"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher" />
-
-        <!-- TextView para mostrar el nombre -->
-        <TextView
-            android:id="@+id/tvNombre"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="Nombre: "
-            android:textStyle="bold"/>
+        android:orientation="horizontal"
+        android:padding="20dp"
+        android:background="@drawable/rounded_card"
+        android:gravity="center">
 
         <!-- TextView para mostrar la cantidad -->
         <TextView
@@ -31,6 +17,15 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="Cantidad: "
+            android:textStyle="bold"/>
+
+        <!-- TextView para mostrar el nombre -->
+        <TextView
+            android:id="@+id/tvNombre"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Nombre: "
             android:textStyle="bold"/>
 
         <!-- TextView para mostrar el precio -->
@@ -53,8 +48,7 @@
 
         <Button
             android:id="@+id/btnDelete"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Quitar" />
     </LinearLayout>

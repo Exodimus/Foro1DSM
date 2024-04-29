@@ -32,7 +32,7 @@ class ProductActivity : AppCompatActivity() {
 
         val products = productManager.searchProductosAll()
         userId = intent.getLongExtra("userId", -1L)
-        shoppingId = shoppingManager.crearCompra(userId!!)
+        shoppingId = intent.getLongExtra("shoppingId", shoppingManager.crearCompra(userId!!))
         setContentView(binding.root)
 
         productsAdapter = ProductsAdapter(products, shoppingDetailManager, shoppingId!!, this)
@@ -51,12 +51,14 @@ class ProductActivity : AppCompatActivity() {
                 R.id.page_2 -> {
                     val intent = Intent(this, ShoppingCartActivity::class.java)
                     intent.putExtra("userId",userId)
+                    intent.putExtra("shoppingId",shoppingId)
                     startActivity(intent)
                     true
                 }
                 R.id.page_3 -> {
                     val intent = Intent(this, MyShoppingsActivity::class.java)
                     intent.putExtra("userId",userId)
+                    intent.putExtra("shoppingId",shoppingId)
                     startActivity(intent)
                     true
                 }

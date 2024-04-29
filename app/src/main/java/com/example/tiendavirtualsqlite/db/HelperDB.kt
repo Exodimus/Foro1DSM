@@ -51,7 +51,7 @@ class HelperDB(context: Context?) :
                 cantidad = jsonObject.getInt("cantidad"),
                 nombre = jsonObject.getString("nombre"),
                 imagen = jsonObject.getString("imagen"),
-                idproducto = jsonObject.getString("idProducto")
+                idproducto = jsonObject.getLong("idProducto")
             )
             productos.add(producto)
         }

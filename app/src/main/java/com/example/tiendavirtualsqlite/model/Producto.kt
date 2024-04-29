@@ -43,12 +43,25 @@ class Producto(context: Context?) {
     }
 
     // Mostrar un registro particular
-    fun searchProducto(id: Int): Cursor? {
-        val columns = arrayOf(COL_ID, COL_DESCRIPCION, COL_PRECIO, COL_CANTIDAD, COL_IMG, COL_NOMBRE)
-        return db!!.query(
+    fun searchProducto(id: Long): Product? {
+        val columns = arrayOf(COL_DESCRIPCION, COL_PRECIO, COL_CANTIDAD, COL_IMG, COL_NOMBRE, COL_ID)
+        val cursor = db!!.query(
             TABLE_NAME_PRODUCTOS, columns,
             "$COL_ID=?", arrayOf(id.toString()), null, null, null
         )
+        var product: Product? = null
+        if (cursor.moveToFirst()) {
+            val descripcion = cursor.getString(cursor.getColumnIndexOrThrow(COL_DESCRIPCION))
+            val precio = cursor.getDouble(cursor.getColumnIndexOrThrow(COL_PRECIO))
+            val cantidad = cursor.getInt(cursor.getColumnIndexOrThrow(COL_CANTIDAD))
+            val imagen = cursor.getString(cursor.getColumnIndexOrThrow(COL_IMG))
+            val nombre = cursor.getString(cursor.getColumnIndexOrThrow(COL_NOMBRE))
+            val idProducto = cursor.getLong(cursor.getColumnIndexOrThrow(COL_ID))
+
+            product = Product(descripcion, precio, cantidad, nombre, imagen, idProducto)
+        }
+        cursor.close()
+        return product
     }
 
     // Mostrar todos los registros
