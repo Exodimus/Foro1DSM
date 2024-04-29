@@ -1,8 +1,8 @@
 package com.example.tiendavirtualsqlite.model
 import android.content.ContentValues
 import android.content.Context
-import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
+import com.example.tiendavirtualsqlite.classes.ShoppingDetail
 import com.example.tiendavirtualsqlite.db.HelperDB
 
 class DetalleCompra(context: Context) {
@@ -53,8 +53,14 @@ class DetalleCompra(context: Context) {
     fun eliminarProducto(idCompraProducto: Long): Int {
         return db!!.delete(TABLE_NAME_DETALLE_COMPRA, "$COL_ID_DETALLE_COMPRA = ?", arrayOf(idCompraProducto.toString()))
     }
-    fun verCompra(idCompra: Long): Cursor? {
-        return db!!.query(
+    fun verCompra(idCompra: Long): List<ShoppingDetail>? {val products = mutableListOf<ShoppingDetail>()
+        val columns = arrayOf(
+            DetalleCompra.COL_ID_DETALLE_COMPRA,
+            DetalleCompra.COL_ID_COMPRA,
+            DetalleCompra.COL_ID_PRODUCTO,
+            DetalleCompra.COL_CANTIDAD
+        )
+        val cursor = db!!.query(
             TABLE_NAME_DETALLE_COMPRA,
             null,
             "$COL_ID_COMPRA = ?",
@@ -63,5 +69,19 @@ class DetalleCompra(context: Context) {
             null,
             null
         )
+        while (cursor.moveToNext()) {
+            val idDetalleCompra = cursor.getLong(cursor.getColumnIndexOrThrow(DetalleCompra.COL_ID_DETALLE_COMPRA))
+            val idProducto = cursor.getLong(cursor.getColumnIndexOrThrow(DetalleCompra.COL_ID_PRODUCTO))
+            val idCompra = cursor.getLong(cursor.getColumnIndexOrThrow(DetalleCompra.COL_ID_COMPRA))
+            val cantidad = cursor.getInt(cursor.getColumnIndexOrThrow(DetalleCompra.COL_CANTIDAD))
+            val product = ShoppingDetail(idDetalleCompra, idCompra, idProducto, cantidad)
+            if(cantidad > 0) {
+                products.add(product)
+            }
+        }
+        print(products)
+
+        cursor.close()
+        return products
     }
 }

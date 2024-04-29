@@ -54,7 +54,7 @@ class Producto(context: Context?) {
     // Mostrar todos los registros
     fun searchProductosAll(): List<Product> {
         val products = mutableListOf<Product>()
-        val columns = arrayOf(COL_DESCRIPCION, COL_PRECIO, COL_CANTIDAD, COL_IMG, COL_NOMBRE)
+        val columns = arrayOf(COL_DESCRIPCION, COL_PRECIO, COL_CANTIDAD, COL_IMG, COL_NOMBRE, COL_ID)
         val cursor = db!!.query(
             TABLE_NAME_PRODUCTOS, columns,
             null, null, null, null, "$COL_NOMBRE ASC"
@@ -65,8 +65,9 @@ class Producto(context: Context?) {
             val cantidad = cursor.getInt(cursor.getColumnIndexOrThrow(COL_CANTIDAD))
             val imagen = cursor.getString(cursor.getColumnIndexOrThrow(COL_IMG))
             val nombre = cursor.getString(cursor.getColumnIndexOrThrow(COL_NOMBRE))
+            val idProducto = cursor.getLong(cursor.getColumnIndexOrThrow(COL_ID))
 
-            val product = Product(descripcion, precio, cantidad, nombre, imagen, idproducto = "")
+            val product = Product(descripcion, precio, cantidad, nombre, imagen, idProducto)
             if(cantidad > 0) {
                 products.add(product)
             }

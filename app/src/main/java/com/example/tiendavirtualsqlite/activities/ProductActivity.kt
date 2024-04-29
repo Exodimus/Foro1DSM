@@ -6,31 +6,36 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tiendavirtualsqlite.adapters.ProductsAdapter
 import com.example.tiendavirtualsqlite.R
-import com.example.tiendavirtualsqlite.classes.ShoppingCart
 import com.example.tiendavirtualsqlite.databinding.ActivityProductBinding
+import com.example.tiendavirtualsqlite.model.Compra
+import com.example.tiendavirtualsqlite.model.DetalleCompra
 import com.example.tiendavirtualsqlite.model.Producto
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class ProductActivity : AppCompatActivity() {
     private lateinit var binding: ActivityProductBinding
     private var userId: Long? = -1L
-    private var shoppingCartId: Long? = -1L
+    private var shoppingId: Long? = -1L
     private lateinit var productManager: Producto
+    private lateinit var shoppingManager: Compra
+    private lateinit var shoppingDetailManager: DetalleCompra
     private lateinit var productsAdapter: ProductsAdapter
     private lateinit var bottomNavigationView: BottomNavigationView
-    private lateinit var shoppingCart: MutableList<ShoppingCart>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityProductBinding.inflate(layoutInflater)
-        userId = intent.getLongExtra("userId", -1L)
-        shoppingCart = mutableListOf()
         productManager = Producto(this)
-        val products = productManager.searchProductosAll()
+        shoppingManager = Compra(this)
+        shoppingDetailManager = DetalleCompra(this)
+        binding = ActivityProductBinding.inflate(layoutInflater)
 
+
+        val products = productManager.searchProductosAll()
+        userId = intent.getLongExtra("userId", -1L)
+        shoppingId = shoppingManager.crearCompra(userId!!)
         setContentView(binding.root)
 
-        productsAdapter = ProductsAdapter(products, userId!!, shoppingCart, this)
+        productsAdapter = ProductsAdapter(products, shoppingDetailManager, shoppingId!!, this)
 
         binding.productsContainer.layoutManager = LinearLayoutManager(this)
         binding.productsContainer.adapter = productsAdapter

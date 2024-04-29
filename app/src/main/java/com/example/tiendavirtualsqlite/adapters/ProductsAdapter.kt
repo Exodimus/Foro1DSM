@@ -9,11 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.tiendavirtualsqlite.R
 import com.example.tiendavirtualsqlite.classes.Product
-import com.example.tiendavirtualsqlite.classes.ShoppingCart
+import com.example.tiendavirtualsqlite.model.DetalleCompra
 
 class ProductsAdapter(private var productsList: List<Product>,
-                      private val userId: Long,
-                      private val shoppingCart: MutableList<ShoppingCart>,
+                      private val shoppingDetailManager: DetalleCompra,
+                      private val shoppingCartId: Long,
                       private val context: Context) : RecyclerView.Adapter<ProductsAdapter.ProductViewHolder>() {
 
     class ProductViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -44,14 +44,15 @@ class ProductsAdapter(private var productsList: List<Product>,
         holder.btnAddProduct.setOnClickListener {
             val cantidadText = holder.quantity.text.toString()
             val cantidad = if (cantidadText.isNotEmpty()) cantidadText.toInt() else 0
+            val details = shoppingDetailManager.verCompra(shoppingCartId)!!.find { it.idProducto == producto.idproducto }
             if(cantidad > 0) {
-                val nuevoProducto = ShoppingCart(
-                    cantidad = cantidad,
-                    idusuario = userId,
-                    idproducto = producto.idproducto
-                )
-                shoppingCart.add(nuevoProducto)
-                Toast.makeText(context, "Producto agregado al carrito", Toast.LENGTH_LONG).show()
+                if(details != null) {
+                    val nuevaCant = cantidad + details.cantidad
+                    shoppingDetailManager.cambiarCantidad(details.idDetalle, nuevaCant)
+                } else {
+                    shoppingDetailManager.agregarProducto(shoppingCartId, producto.idproducto, cantidad)
+                    Toast.makeText(context, "Producto agregado al carrito", Toast.LENGTH_LONG).show()
+                }
             }
         }
     }

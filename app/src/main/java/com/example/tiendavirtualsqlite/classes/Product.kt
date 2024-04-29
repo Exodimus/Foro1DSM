@@ -1,6 +1,4 @@
 package com.example.tiendavirtualsqlite.classes
-import org.json.JSONArray
-import java.io.File
 
 data class Product(
     val descripcion: String,
@@ -8,4 +6,4 @@ data class Product(
     val cantidad: Int,
     val nombre: String,
     val imagen: String,
-    val idproducto: String)
+    val idproducto: Long)
