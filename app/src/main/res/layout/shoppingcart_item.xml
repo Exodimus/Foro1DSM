@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="15dp">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,7 +21,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:orientation="vertical"
-                android:padding="20dp"
+                android:layout_marginEnd="20dp"
                 android:background="@drawable/rounded_card"
                 android:gravity="center">
                 <TextView
@@ -35,37 +36,12 @@
                     android:textStyle="bold"/>
             </LinearLayout>
 
-            <!-- NOMBRE -->
-            <LinearLayout
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:orientation="vertical"
-                android:padding="20dp"
-                android:background="@drawable/rounded_card"
-                android:gravity="center">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Nombre:"
-                    android:textStyle="bold"/>
-                <TextView
-                    android:id="@+id/tvNombre"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"/>
-            </LinearLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
             <!-- PRECIO -->
             <LinearLayout
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:orientation="vertical"
-                android:padding="20dp"
+                android:layout_marginEnd="20dp"
                 android:background="@drawable/rounded_card"
                 android:gravity="center">
                 <TextView
@@ -85,7 +61,6 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:orientation="vertical"
-                android:padding="20dp"
                 android:background="@drawable/rounded_card"
                 android:gravity="center">
                 <TextView
@@ -95,6 +70,30 @@
                     android:textStyle="bold"/>
                 <TextView
                     android:id="@+id/tvSubtotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- NOMBRE -->
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/rounded_card"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nombre:"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/tvNombre"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"/>
