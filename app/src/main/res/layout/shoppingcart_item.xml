@@ -1,50 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="20dp"
+        android:orientation="vertical"
         android:background="@drawable/rounded_card"
-        android:gravity="center">
-
-        <!-- TextView para mostrar la cantidad -->
-        <TextView
-            android:id="@+id/tvCantidad"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+        android:gravity="center"
+        android:padding="20dp">
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cantidad: "
-            android:textStyle="bold"/>
+            android:orientation="horizontal">
 
-        <!-- TextView para mostrar el nombre -->
-        <TextView
-            android:id="@+id/tvNombre"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="Nombre: "
-            android:textStyle="bold"/>
 
-        <!-- TextView para mostrar el precio -->
-        <TextView
-            android:id="@+id/tvPrecio"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="Precio: "
-            android:textStyle="bold"/>
+            <!-- CANTIDAD -->
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:background="@drawable/rounded_card"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cantidad:"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/tvCantidad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"/>
+            </LinearLayout>
 
-        <!-- TextView para mostrar el subtotal -->
-        <TextView
-            android:id="@+id/tvSubtotal"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            <!-- NOMBRE -->
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:background="@drawable/rounded_card"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nombre:"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/tvNombre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Subtotal: "
-            android:textStyle="bold"/>
+            android:orientation="horizontal">
+
+            <!-- PRECIO -->
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:background="@drawable/rounded_card"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Precio c/u:"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/tvPrecio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <!-- SUBTOTAL -->
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:background="@drawable/rounded_card"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Subtotal:"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/tvSubtotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+        </LinearLayout>
 
         <Button
             android:id="@+id/btnDelete"
@@ -52,4 +107,5 @@
             android:layout_height="wrap_content"
             android:text="Quitar" />
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
