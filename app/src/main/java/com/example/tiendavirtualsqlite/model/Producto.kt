@@ -85,7 +85,6 @@ class Producto(context: Context?) {
                 products.add(product)
             }
         }
-        print(products)
 
         cursor.close()
         return products

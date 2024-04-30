@@ -49,6 +49,7 @@ class ProductsAdapter(private var productsList: List<Product>,
                 if(details != null) {
                     val nuevaCant = cantidad + details.cantidad
                     shoppingDetailManager.cambiarCantidad(details.idDetalle, nuevaCant)
+                    Toast.makeText(context, "Producto agregado al carrito", Toast.LENGTH_LONG).show()
                 } else {
                     shoppingDetailManager.agregarProducto(shoppingCartId, producto.idproducto, cantidad)
                     Toast.makeText(context, "Producto agregado al carrito", Toast.LENGTH_LONG).show()

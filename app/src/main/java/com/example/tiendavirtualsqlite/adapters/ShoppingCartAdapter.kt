@@ -8,10 +8,12 @@ import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tiendavirtualsqlite.R
 import com.example.tiendavirtualsqlite.classes.ShoppingDetail
+import com.example.tiendavirtualsqlite.model.DetalleCompra
 import com.example.tiendavirtualsqlite.model.Producto
 
 class ShoppingCartAdapter(private var details: List<ShoppingDetail>,
                           private val productManager: Producto,
+                          private val detailManager: DetalleCompra,
                           private val context: Context) : RecyclerView.Adapter<ShoppingCartAdapter.ShoppingCartHolder>() {
     class ShoppingCartHolder(view: View): RecyclerView.ViewHolder(view) {
         val tvNombre: TextView = view.findViewById(R.id.tvNombre)
@@ -33,6 +35,15 @@ class ShoppingCartAdapter(private var details: List<ShoppingDetail>,
         holder.tvCantidad.text = detail.cantidad.toString()
         holder.tvPrecio.text =  "$${product.precio}"
         holder.tvSubtotal.text = "$${(detail.cantidad * product.precio)}"
+
+        holder.btnDelete.setOnClickListener{
+            detailManager.eliminarProducto(detail.idDetalle)
+
+            Toast.makeText(context, "Producto eliminado del carrito", Toast.LENGTH_LONG).show()
+            val newDetails = details.toMutableList()
+            newDetails.removeAt(position)
+            refreshData(newDetails)
+        }
     }
 
     override fun getItemCount() = details.size
